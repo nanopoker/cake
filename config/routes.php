@@ -57,6 +57,10 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/player/param/*', ['controller' => 'Player', 'action' => 'param']);
 
+	$routes->connect("/player/raw_sql", ["controller" => "Player", "action" => "rawSql"]);
+
+	$routes->connect("/player/logging", ["controller" => "Player", "action" => "logging"]);
+
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
      */
