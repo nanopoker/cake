@@ -3,6 +3,7 @@ namespace App\Controller;
 use Cake\ORM\TableRegistry;
 use Cake\Datasource\ConnectionManager;
 use Cake\Log\Log;
+use Cake\Routing\Router;
 
 class PlayerController extends AppController{
     public function name(){
@@ -33,6 +34,11 @@ class PlayerController extends AppController{
 
 	public function param(){
 		print_r($this->request->getParam('pass'));
+		var_dump($this->request->getParam('id'));
+		echo Router::url(['controller'=>'player', 'action'=>'param', 'id'=>12]);
+
+		echo Router::url(['controller' => 'Articles', 'action' => 'view', 'id' => 15]);
+		echo "\n";
 		return $this->response->withStringbody("good");
 	}
 	

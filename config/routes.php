@@ -55,7 +55,7 @@ Router::scope('/', function (RouteBuilder $routes) {
 
     $routes->connect('/player/age', ['controller' => 'Player', 'action' => 'age']);
 
-    $routes->connect('/player/param/*', ['controller' => 'Player', 'action' => 'param']);
+    $routes->connect('/player/param/*', ['controller' => 'Player', 'action' => 'param'], ['id'=>'\d+', 'pass'=>['id']]);
 
 	$routes->connect("/player/raw_sql", ["controller" => "Player", "action" => "rawSql"]);
 
@@ -84,7 +84,23 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->fallbacks(DashedRoute::class);
 });
+//构建restful接口
+Router::scope("/", function($routers){
+	$routers->setExtensions('json');
+	$routers->resources('Book');
+	$routers->connect("/view", ['controller'=>'book', 'action'=>'view', '_method'=>'get'], ['pass'=>['id'=>'\d+', 'number'=>'\w+', 'year'=>'\d+']]);
+	$routers->connect("/add", ['controller'=>'book', 'action'=>'add', '_method'=>'post']);
+	$routers->connect("/lookup", ['controller'=>'book', 'action'=>'lookup', '_method'=>'get'], ['pass'=>['id'=>'\d+']]);
+});
 
+Router::scope("/", function($routers){
+	$routers->setExtensions('json');
+	$routers->resources('User');
+	$routers->connect('/view', ['controller'=>'user', 'action'=>'view', '_method'=>'get'], ['pass'=>['id'=>'\d+']]);
+	$routers->connect('/add', ['controller'=>'user', 'action'=>'add', '_method'=>'post']);
+	$routers->connect('/edit', ['controller'=>'user', 'action'=>'edit', '_method'=>'put']);
+	$routers->connect('/remove', ['controller'=>'user', 'action'=>'remove', '_method'=>'delete']);
+});
 /**
  * Load all plugin routes. See the Plugin documentation on
  * how to customize the loading of plugin routes.
