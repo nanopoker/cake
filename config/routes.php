@@ -101,6 +101,16 @@ Router::scope("/", function($routers){
 	$routers->connect('/edit', ['controller'=>'user', 'action'=>'edit', '_method'=>'put']);
 	$routers->connect('/remove', ['controller'=>'user', 'action'=>'remove', '_method'=>'delete']);
 });
+
+Router::scope("/", function(RouteBuilder $routers){
+	$routers->connect("update", ['controller'=>"Db", 'action'=>'update', '_method'=>'put']);
+	$routers->connect("insert", ['controller'=>'Db', 'action'=>'insert', '_method'=>'post']);
+	$routers->connect('delete', ['controller'=>'Db', 'action'=>'remove', '_method'=>'delete']);
+	$routers->connect('view', ['controller'=>'Db', 'action'=>'view', '_method'=>'get'], ['pass'=>['id']]);
+	$routers->connect('view1', ['controller'=>'Db', 'action'=>'view1', '_method'=>'get'], ['pass'=>['id']]);
+	$routers->connect('rows', ['controller'=>'Db', 'action'=>'rows']);
+	$routers->connect('logging', ['controller'=>'Db', 'action'=>'logging']);
+});
 /**
  * Load all plugin routes. See the Plugin documentation on
  * how to customize the loading of plugin routes.
