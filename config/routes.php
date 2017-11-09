@@ -111,6 +111,13 @@ Router::scope("/", function(RouteBuilder $routers){
 	$routers->connect('rows', ['controller'=>'Db', 'action'=>'rows']);
 	$routers->connect('logging', ['controller'=>'Db', 'action'=>'logging']);
 });
+
+Router::scope("/", function(RouteBuilder $routes){
+	$routes->connect("view", ['controller'=>'profile', 'action'=>'view'], ['pass'=>['id']]);
+	$routes->connect("getall", ['controller'=>'profile', 'action'=>'getall']);
+	$routes->connect('single', ['controller'=>'profile', 'action'=>'single']);
+	$routes->connect('chain', ['controller'=>'profile', 'action'=>'chain']);
+});
 /**
  * Load all plugin routes. See the Plugin documentation on
  * how to customize the loading of plugin routes.
