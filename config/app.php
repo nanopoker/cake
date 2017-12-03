@@ -263,15 +263,15 @@ return [
         /**
          * The test connection is used during the test suite.
          */
-        'workflow_db' => [
+        'test' => [
             'className' => 'Cake\Database\Connection',
             'driver' => 'Cake\Database\Driver\Mysql',
             'persistent' => false,
             'host' => 'localhost:3311',
             //'port' => 'non_standard_port_number',
-            'username' => 'root',
-            'password' => '3311',
-            'database' => 'workflow_db',
+            'username' => 'dick',
+            'password' => 'dick',
+            'database' => 'test',
             'encoding' => 'utf8',
             'timezone' => 'UTC',
             'cacheMetadata' => true,
